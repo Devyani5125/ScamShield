@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ScamShield | Digital Scam Protection</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+
+<body>
+    <canvas id="cyberNetwork"></canvas>
+
+    <!-- ========================================= -->
+    <!-- MAIN APP -->
+    <!-- ========================================= -->
+
+    <div class="container">
+
+
+        <!-- ========================================= -->
+        <!-- HEADER -->
+        <!-- ========================================= -->
+        <header class="header">
+
+    <div class="brand">
+
+        <div class="shield-icon">
+            🛡️
+        </div>
+
+        <div>
+            <h1>ScamShield</h1>
+
+            <p class="subtitle">
+                Understand the threat before you act.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="header-actions">
+
+        <a href="dashboard.html" class="dashboard-button">
+            📊 Dashboard
+        </a>
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+            SYSTEM ONLINE
+        </div>
+
+    </div>
+
+</header>
+
+                
+
+
+        <!-- ========================================= -->
+        <!-- INTRODUCTION -->
+        <!-- ========================================= -->
+
+      <section class="intro-section">
+
+    <h2>
+        Digital Scam Detection
+    </h2>
+
+    <p>
+        Analyze suspicious messages, links, screenshots,
+        and QR codes using ScamShield's multi-layer
+        risk detection system.
+    </p>
+
+    <div class="cyber-quote" id="scannerQuote">
+        Pause. Verify. Protect.
+    </div>
+
+</section>
+
+
+
+        <!-- ========================================= -->
+        <!-- SCANNER GRID -->
+        <!-- ========================================= -->
+
+        <div class="scanner-grid">
+
+
+            <!-- ===================================== -->
+            <!-- 1. MESSAGE ANALYZER -->
+            <!-- ===================================== -->
+
+            <div class="card scanner-card">
+
+                <div class="card-header">
+
+                    <div class="card-icon">
+                        💬
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Message Scanner
+                        </h2>
+
+                        <span class="card-label">
+                            TEXT ANALYSIS
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <p class="card-description">
+
+                    Analyze suspicious SMS, emails,
+                    or messages for scam indicators
+                    and social-engineering tactics.
+
+                </p>
+
+
+                <textarea
+                    id="message"
+                    placeholder="Paste a suspicious message here...">
+                </textarea>
+
+
+                <button
+                    class="analyze-button"
+                    onclick="analyzeMessage()">
+
+                    <span>🔍</span>
+
+                    Analyze Message
+
+                </button>
+
+
+                <div
+                    id="result"
+                    class="result-card">
+                </div>
+
+            </div>
+
+
+
+            <!-- ===================================== -->
+            <!-- 2. URL ANALYZER -->
+            <!-- ===================================== -->
+
+            <div class="card scanner-card">
+
+                <div class="card-header">
+
+                    <div class="card-icon">
+                        🔗
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            URL Scanner
+                        </h2>
+
+                        <span class="card-label">
+                            LINK ANALYSIS
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <p class="card-description">
+
+                    Check suspicious website links
+                    for potentially dangerous URL patterns.
+
+                </p>
+
+
+                <input
+                    type="text"
+                    id="urlInput"
+                    class="text-input"
+                    placeholder="https://example.com/login">
+
+
+                <button
+                    class="analyze-button"
+                    onclick="checkURL()">
+
+                    <span>🔍</span>
+
+                    Check Link
+
+                </button>
+
+
+                <div
+                    id="urlResult"
+                    class="result-card">
+                </div>
+
+            </div>
+
+
+
+            <!-- ===================================== -->
+            <!-- 3. SCREENSHOT ANALYZER -->
+            <!-- ===================================== -->
+
+            <div class="card scanner-card">
+
+                <div class="card-header">
+
+                    <div class="card-icon">
+                        📸
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Screenshot Scanner
+                        </h2>
+
+                        <span class="card-label">
+                            OCR ANALYSIS
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <p class="card-description">
+
+                    Upload a screenshot of a suspicious
+                    message or notification for analysis.
+
+                </p>
+
+
+                <div class="upload-area">
+
+                    <div class="upload-icon">
+                        🖼️
+                    </div>
+
+                    <span>
+                        Select screenshot
+                    </span>
+
+                    <small>
+                        PNG, JPG, JPEG
+                    </small>
+
+                    <input
+                        type="file"
+                        id="screenshotInput"
+                        accept="image/*">
+
+                </div>
+
+
+                <button
+                    class="analyze-button"
+                    onclick="analyzeScreenshot()">
+
+                    <span>🔍</span>
+
+                    Analyze Screenshot
+
+                </button>
+
+
+                <div
+                    id="screenshotResult"
+                    class="result-card">
+                </div>
+
+            </div>
+
+
+
+            <!-- ===================================== -->
+            <!-- 4. QR CODE ANALYZER -->
+            <!-- ===================================== -->
+
+            <div class="card scanner-card">
+
+                <div class="card-header">
+
+                    <div class="card-icon">
+                        📱
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            QR Scanner
+                        </h2>
+
+                        <span class="card-label">
+                            QR ANALYSIS
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <p class="card-description">
+
+                    Decode a QR code and analyze the
+                    information or link hidden inside it.
+
+                </p>
+
+
+                <div class="upload-area">
+
+                    <div class="upload-icon">
+                        ⬛
+                    </div>
+
+                    <span>
+                        Select QR image
+                    </span>
+
+                    <small>
+                        PNG, JPG, JPEG
+                    </small>
+
+                    <input
+                        type="file"
+                        id="qrInput"
+                        accept="image/*">
+
+                </div>
+
+
+                <button
+                    class="analyze-button"
+                    onclick="analyzeQR()">
+
+                    <span>🔍</span>
+
+                    Analyze QR Code
+
+                </button>
+
+
+                <div
+                    id="qrResult"
+                    class="result-card">
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- ========================================= -->
+        <!-- HOW SCAMSHIELD WORKS -->
+        <!-- ========================================= -->
+
+        <section class="how-it-works">
+
+            <div class="section-heading">
+
+                <span class="section-tag">
+                    PROTECTION PIPELINE
+                </span>
+
+                <h2>
+                    How ScamShield Works
+                </h2>
+
+                <p>
+                    Multiple analysis layers work together
+                    to identify suspicious digital activity.
+                </p>
+
+            </div>
+
+
+            <div class="pipeline">
+
+
+                <div class="pipeline-step">
+
+                    <div class="pipeline-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Input
+                    </h3>
+
+                    <p>
+                        Message, URL, screenshot,
+                        or QR code
+                    </p>
+
+                </div>
+
+
+                <div class="pipeline-line"></div>
+
+
+                <div class="pipeline-step">
+
+                    <div class="pipeline-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Analyze
+                    </h3>
+
+                    <p>
+                        Detect suspicious patterns
+                        and scam indicators
+                    </p>
+
+                </div>
+
+
+                <div class="pipeline-line"></div>
+
+
+                <div class="pipeline-step">
+
+                    <div class="pipeline-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Risk Score
+                    </h3>
+
+                    <p>
+                        Generate a risk score
+                        from 0–100
+                    </p>
+
+                </div>
+
+
+                <div class="pipeline-line"></div>
+
+
+                <div class="pipeline-step">
+
+                    <div class="pipeline-number">
+                        04
+                    </div>
+
+                    <h3>
+                        Protect
+                    </h3>
+
+                    <p>
+                        Explain the threat and
+                        recommend a safe action
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ========================================= -->
+        <!-- FOOTER -->
+        <!-- ========================================= -->
+
+        <footer>
+
+            <div>
+                🛡️ <strong>ScamShield</strong>
+            </div>
+
+            <span>
+                Understand the threat before you act.
+            </span>
+
+        </footer>
+
+
+    </div>
+
+
+
+    <!-- ========================================= -->
+    <!-- JAVASCRIPT LIBRARIES -->
+    <!-- ========================================= -->
+
+    <!-- OCR Library -->
+
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js">
+    </script>
+
+
+    <!-- QR Code Decoder -->
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js">
+    </script>
+
+
+    <!-- ScamShield JavaScript -->
+
+    <script src="script.js"></script>
+
+<script>
+
+/* =====================================================
+   SCAMSHIELD CYBERSECURITY NETWORK ANIMATION
+   ===================================================== */
+
+(function () {
+
+    const canvas = document.getElementById("cyberNetwork");
+
+    if (!canvas) {
+        return;
+    }
+
+    const ctx = canvas.getContext("2d");
+
+    let width;
+    let height;
+
+    let nodes = [];
+
+    const NODE_COUNT = 75;
+    const CONNECTION_DISTANCE = 155;
+
+
+    /* =========================================
+       RESIZE CANVAS
+       ========================================= */
+
+    function resizeCanvas() {
+
+        width = window.innerWidth;
+        height = window.innerHeight;
+
+        const pixelRatio =
+            Math.min(window.devicePixelRatio || 1, 2);
+
+        canvas.width = width * pixelRatio;
+        canvas.height = height * pixelRatio;
+
+        canvas.style.width = width + "px";
+        canvas.style.height = height + "px";
+
+        ctx.setTransform(
+            pixelRatio,
+            0,
+            0,
+            pixelRatio,
+            0,
+            0
+        );
+
+        createNodes();
+    }
+
+
+    /* =========================================
+       CREATE MOVING NODES
+       ========================================= */
+
+    function createNodes() {
+
+        nodes = [];
+
+        for (let i = 0; i < NODE_COUNT; i++) {
+
+            nodes.push({
+
+                x: Math.random() * width,
+
+                y: Math.random() * height,
+
+                vx:
+                    (Math.random() - 0.5)
+                    * 0.35,
+
+                vy:
+                    (Math.random() - 0.5)
+                    * 0.35,
+
+                radius:
+                    Math.random() * 2 + 1,
+
+                pulse:
+                    Math.random() * Math.PI * 2
+            });
+        }
+    }
+
+
+    /* =========================================
+       DRAW NETWORK
+       ========================================= */
+
+    function drawNetwork() {
+
+        ctx.clearRect(
+            0,
+            0,
+            width,
+            height
+        );
+
+
+        /* =====================================
+           DRAW CONNECTING LINES
+           ===================================== */
+
+        for (let i = 0; i < nodes.length; i++) {
+
+            for (
+                let j = i + 1;
+                j < nodes.length;
+                j++
+            ) {
+
+                const nodeA = nodes[i];
+                const nodeB = nodes[j];
+
+                const dx =
+                    nodeA.x - nodeB.x;
+
+                const dy =
+                    nodeA.y - nodeB.y;
+
+                const distance =
+                    Math.sqrt(
+                        dx * dx +
+                        dy * dy
+                    );
+
+
+                if (
+                    distance <
+                    CONNECTION_DISTANCE
+                ) {
+
+                    const opacity =
+                        (1 -
+                        distance /
+                        CONNECTION_DISTANCE)
+                        * 0.45;
+
+
+                    ctx.beginPath();
+
+                    ctx.moveTo(
+                        nodeA.x,
+                        nodeA.y
+                    );
+
+                    ctx.lineTo(
+                        nodeB.x,
+                        nodeB.y
+                    );
+
+
+                    ctx.strokeStyle =
+                        "rgba(0, 140, 255, "
+                        + opacity +
+                        ")";
+
+
+                    ctx.lineWidth = 0.7;
+
+                    ctx.stroke();
+                }
+            }
+        }
+
+
+        /* =====================================
+           DRAW MOVING DOTS
+           ===================================== */
+
+        nodes.forEach(function (node) {
+
+            node.x += node.vx;
+            node.y += node.vy;
+
+            node.pulse += 0.025;
+
+
+            /* Bounce from screen edges */
+
+            if (
+                node.x < 0 ||
+                node.x > width
+            ) {
+
+                node.vx *= -1;
+            }
+
+
+            if (
+                node.y < 0 ||
+                node.y > height
+            ) {
+
+                node.vy *= -1;
+            }
+
+
+            /* Pulsing glow */
+
+            const glow =
+                0.65 +
+                Math.sin(node.pulse)
+                * 0.25;
+
+
+            /* Outer glow */
+
+            ctx.beginPath();
+
+            ctx.arc(
+                node.x,
+                node.y,
+                node.radius * 3,
+                0,
+                Math.PI * 2
+            );
+
+
+            ctx.fillStyle =
+                "rgba(0, 170, 255, 0.08)";
+
+
+            ctx.fill();
+
+
+            /* Main glowing dot */
+
+            ctx.beginPath();
+
+            ctx.arc(
+                node.x,
+                node.y,
+                node.radius,
+                0,
+                Math.PI * 2
+            );
+
+
+            ctx.fillStyle =
+                "rgba(0, 200, 255, "
+                + glow +
+                ")";
+
+
+            ctx.shadowBlur = 12;
+
+            ctx.shadowColor =
+                "rgba(0, 180, 255, 0.9)";
+
+
+            ctx.fill();
+
+            ctx.shadowBlur = 0;
+
+        });
+
+
+        requestAnimationFrame(
+            drawNetwork
+        );
+    }
+
+
+    /* =========================================
+       START
+       ========================================= */
+
+    window.addEventListener(
+        "resize",
+        resizeCanvas
+    );
+
+    resizeCanvas();
+
+    drawNetwork();
+
+})();
+
+</script>
+<script>
+
+/* =====================================================
+   SCANNER CYBER QUOTES
+   ===================================================== */
+
+(function () {
+
+    const quoteElement =
+        document.getElementById("scannerQuote");
+
+    if (!quoteElement) {
+        return;
+    }
+
+    const quotes = [
+        "Pause. Verify. Protect.",
+        "Think before you click.",
+        "Trust less. Verify more.",
+        "Spot the signs. Stop the scam.",
+        "Verify before you act.",
+        "One check can prevent a loss."
+    ];
+
+    let currentQuote = 0;
+
+    setInterval(function () {
+
+        quoteElement.classList.add("fade");
+
+        setTimeout(function () {
+
+            currentQuote =
+                (currentQuote + 1) % quotes.length;
+
+            quoteElement.textContent =
+                quotes[currentQuote];
+
+            quoteElement.classList.remove("fade");
+
+        }, 800);
+
+    }, 4000);
+
+})();
+
+</script>
+
+</body>
+
+</html>

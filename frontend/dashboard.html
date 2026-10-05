@@ -1,0 +1,1396 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ScamShield | Cyber Threat Dashboard</title>
+
+    <style>
+
+        /* =====================================================
+           SCAMSHIELD DASHBOARD QUOTE
+           ===================================================== */
+
+        .cyber-quote {
+            margin-top: 5px;
+            margin-bottom: 3px;
+            color: #38bdf8;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-align: left;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.35);
+            transition:
+                opacity 0.8s ease,
+                transform 0.8s ease;
+        }
+
+        .cyber-quote.fade {
+            opacity: 0;
+            transform: translateY(4px);
+        }
+
+
+        /* =====================================================
+           RESET
+           ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =====================================================
+           BODY
+           ===================================================== */
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #080d14;
+            color: #e5edf5;
+            min-height: 100vh;
+        }
+
+
+        /* =====================================================
+           DASHBOARD CONTAINER
+           ===================================================== */
+
+        .dashboard {
+            max-width: 1400px;
+            margin: auto;
+            padding: 30px;
+        }
+
+
+        /* =====================================================
+           HEADER
+           ===================================================== */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid #1d2a38;
+        }
+
+
+        /* =====================================================
+           BRAND
+           ===================================================== */
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+
+        /* =====================================================
+           SHIELD
+           ===================================================== */
+
+        .shield {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: #0e1d2b;
+            border: 1px solid #1e90ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+
+            box-shadow:
+                0 0 18px rgba(30, 144, 255, 0.2);
+        }
+
+
+        /* =====================================================
+           SCAMSHIELD TITLE
+           ===================================================== */
+
+        .brand h1 {
+            font-size: 27px;
+            letter-spacing: 1px;
+        }
+
+
+        /* =====================================================
+           SUBTITLE
+           ===================================================== */
+
+        .brand p {
+            color: #718096;
+            font-size: 13px;
+            margin-top: 3px;
+        }
+
+
+        /* =====================================================
+           SYSTEM STATUS
+           ===================================================== */
+
+        .system-status {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            color: #6ee7b7;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+
+        .status-dot {
+            width: 9px;
+            height: 9px;
+            background: #22c55e;
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 10px #22c55e;
+        }
+
+        /* TOP CARDS */
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 22px;
+        }
+
+        .stat-card {
+            background: #0d141d;
+            border: 1px solid #1d2a38;
+            border-radius: 14px;
+            padding: 22px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: #1e90ff;
+            opacity: 0.6;
+        }
+
+        .stat-label {
+            color: #718096;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .stat-number {
+            font-size: 34px;
+            font-weight: 700;
+        }
+
+        .stat-description {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .critical .stat-number {
+            color: #ff5c5c;
+        }
+
+        .high .stat-number {
+            color: #ff9f43;
+        }
+
+        .medium .stat-number {
+            color: #facc15;
+        }
+
+        /* MAIN GRID */
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 22px;
+        }
+
+        .panel {
+            background: #0d141d;
+            border: 1px solid #1d2a38;
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .panel-header h2 {
+            font-size: 17px;
+        }
+
+        .panel-header span {
+            font-size: 11px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* RISK BARS */
+
+        .risk-item {
+            margin-bottom: 21px;
+        }
+
+        .risk-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .risk-name {
+            color: #cbd5e1;
+        }
+
+        .risk-count {
+            color: #94a3b8;
+        }
+
+        .risk-bar {
+            width: 100%;
+            height: 8px;
+            background: #18222e;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .risk-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 20px;
+            transition: width 0.8s ease;
+        }
+
+        .critical-fill {
+            background: #ef4444;
+        }
+
+        .high-fill {
+            background: #f97316;
+        }
+
+        .medium-fill {
+            background: #eab308;
+        }
+
+        .low-fill {
+            background: #22c55e;
+        }
+
+        /* SCAN TYPES */
+
+        .scan-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .scan-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: #101923;
+            border: 1px solid #1c2936;
+            border-radius: 10px;
+        }
+
+        .scan-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .scan-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: #172433;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scan-name {
+            font-size: 13px;
+            color: #dbe4ee;
+        }
+
+        .scan-count {
+            font-size: 20px;
+            font-weight: 700;
+            color: #60a5fa;
+        }
+
+        /* RECENT ACTIVITY */
+
+        .recent-panel {
+            margin-bottom: 22px;
+        }
+
+        .table-wrapper {
+            max-height: 400px;
+            overflow-y: auto;
+            overflow-x: auto;
+            border-radius: 10px;
+        }
+
+        /* Scrollbar */
+
+        .table-wrapper::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-track {
+            background: #101923;
+            border-radius: 10px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background: #263646;
+            border-radius: 10px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb:hover {
+            background: #3b4d60;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 13px 10px;
+            color: #64748b;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #1d2a38;
+            position: sticky;
+            top: 0;
+            background: #0d141d;
+            z-index: 2;
+        }
+
+        td {
+            padding: 15px 10px;
+            border-bottom: 1px solid #17222e;
+            font-size: 13px;
+            color: #cbd5e1;
+        }
+
+        .risk-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .badge-critical {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ff6b6b;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .badge-high {
+            background: rgba(249, 115, 22, 0.15);
+            color: #fb923c;
+            border: 1px solid rgba(249, 115, 22, 0.3);
+        }
+
+        .badge-medium {
+            background: rgba(234, 179, 8, 0.15);
+            color: #facc15;
+            border: 1px solid rgba(234, 179, 8, 0.3);
+        }
+
+        .badge-low {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        /* FOOTER */
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #475569;
+            font-size: 11px;
+            padding-top: 10px;
+        }
+
+        .refresh-btn {
+            background: #101923;
+            border: 1px solid #263646;
+            color: #93c5fd;
+            padding: 9px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .refresh-btn:hover {
+            background: #162333;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .dashboard {
+                padding: 18px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .system-status {
+                display: none;
+            }
+        }
+    
+/* =====================================================
+   SCAMSHIELD CYBER NETWORK BACKGROUND
+   ===================================================== */
+
+body {
+    position: relative;
+    overflow-x: hidden;
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(30, 144, 255, 0.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 75%,
+            rgba(6, 182, 212, 0.10),
+            transparent 35%
+        ),
+        #050a12;
+}
+
+#cyberNetwork {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.82;
+}
+
+.dashboard {
+    position: relative;
+    z-index: 2;
+}
+
+.stat-card,
+.panel {
+    background: rgba(13, 20, 29, 0.88);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.scanner-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 10px 18px;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    background: rgba(0, 140, 255, 0.12);
+
+    border: 1px solid rgba(0, 180, 255, 0.55);
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+.scanner-button:hover {
+    background: rgba(0, 160, 255, 0.22);
+
+    border-color: rgba(0, 200, 255, 0.9);
+
+    box-shadow:
+        0 0 18px rgba(0, 170, 255, 0.25);
+
+    transform: translateY(-1px);
+}
+    </style>
+    
+</head>
+
+<body>
+
+    <canvas id="cyberNetwork"></canvas>
+
+    <div class="dashboard">
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+    <div class="brand">
+
+        <div class="shield">
+            🛡️
+        </div>
+
+        <div>
+            <h1>SCAMSHIELD</h1>
+            <p>Cyber Threat Intelligence Dashboard</p>
+        </div>
+
+    </div>
+
+    <div class="header-actions">
+
+        <a href="index.html" class="scanner-button">
+            ← Scanner
+        </a>
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+            SYSTEM ONLINE
+        </div>
+
+    </div>
+
+</header>
+
+        <!-- STATISTICS -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Total Scans
+                </div>
+
+                <div class="stat-number" id="totalScans">
+                    0
+                </div>
+
+                <div class="stat-description">
+                    All analyzed inputs
+                </div>
+
+            </div>
+
+
+            <div class="stat-card critical">
+
+                <div class="stat-label">
+                    Critical Threats
+                </div>
+
+                <div class="stat-number" id="criticalScans">
+                    0
+                </div>
+
+                <div class="stat-description">
+                    Immediate attention
+                </div>
+
+            </div>
+
+
+            <div class="stat-card high">
+
+                <div class="stat-label">
+                    High Risk
+                </div>
+
+                <div class="stat-number" id="highScans">
+                    0
+                </div>
+
+                <div class="stat-description">
+                    Potential threats
+                </div>
+
+            </div>
+
+
+            <div class="stat-card medium">
+
+                <div class="stat-label">
+                    Medium Risk
+                </div>
+
+                <div class="stat-number" id="mediumScans">
+                    0
+                </div>
+
+                <div class="stat-description">
+                    Requires caution
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RISK + SCAN TYPES -->
+
+        <section class="main-grid">
+
+
+            <!-- RISK DISTRIBUTION -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>Risk Distribution</h2>
+
+                    <span>Threat Level</span>
+
+                </div>
+
+
+                <div class="risk-item">
+
+                    <div class="risk-info">
+                        <span class="risk-name">Critical</span>
+                        <span class="risk-count" id="criticalRiskCount">0</span>
+                    </div>
+
+                    <div class="risk-bar">
+                        <div
+                            class="risk-fill critical-fill"
+                            id="criticalBar">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="risk-item">
+
+                    <div class="risk-info">
+                        <span class="risk-name">High</span>
+                        <span class="risk-count" id="highRiskCount">0</span>
+                    </div>
+
+                    <div class="risk-bar">
+                        <div
+                            class="risk-fill high-fill"
+                            id="highBar">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="risk-item">
+
+                    <div class="risk-info">
+                        <span class="risk-name">Medium</span>
+                        <span class="risk-count" id="mediumRiskCount">0</span>
+                    </div>
+
+                    <div class="risk-bar">
+                        <div
+                            class="risk-fill medium-fill"
+                            id="mediumBar">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="risk-item">
+
+                    <div class="risk-info">
+                        <span class="risk-name">Low</span>
+                        <span class="risk-count" id="lowRiskCount">0</span>
+                    </div>
+
+                    <div class="risk-bar">
+                        <div
+                            class="risk-fill low-fill"
+                            id="lowBar">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SCAN SOURCES -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>Scan Sources</h2>
+
+                    <span>Input Type</span>
+
+                </div>
+
+
+                <div class="scan-list">
+
+
+                    <div class="scan-row">
+
+                        <div class="scan-left">
+
+                            <div class="scan-icon">
+                                💬
+                            </div>
+
+                            <span class="scan-name">
+                                Messages
+                            </span>
+
+                        </div>
+
+                        <span
+                            class="scan-count"
+                            id="messageScans">
+                            0
+                        </span>
+
+                    </div>
+
+
+                    <div class="scan-row">
+
+                        <div class="scan-left">
+
+                            <div class="scan-icon">
+                                🔗
+                            </div>
+
+                            <span class="scan-name">
+                                URLs
+                            </span>
+
+                        </div>
+
+                        <span
+                            class="scan-count"
+                            id="urlScans">
+                            0
+                        </span>
+
+                    </div>
+
+
+                    <div class="scan-row">
+
+                        <div class="scan-left">
+
+                            <div class="scan-icon">
+                                📱
+                            </div>
+
+                            <span class="scan-name">
+                                QR Codes
+                            </span>
+
+                        </div>
+
+                        <span
+                            class="scan-count"
+                            id="qrScans">
+                            0
+                        </span>
+
+                    </div>
+
+
+                    <div class="scan-row">
+
+                        <div class="scan-left">
+
+                            <div class="scan-icon">
+                                🖼️
+                            </div>
+
+                            <span class="scan-name">
+                                Screenshots
+                            </span>
+
+                        </div>
+
+                        <span
+                            class="scan-count"
+                            id="screenshotScans">
+                            0
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RECENT ACTIVITY -->
+
+        <section class="panel recent-panel">
+
+            <div class="panel-header">
+
+                <h2>Recent Scan Activity</h2>
+
+                <span>Live Database</span>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Type</th>
+                            <th>Risk</th>
+                            <th>Score</th>
+                            <th>Scam Type</th>
+                            <th>Time</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="recentScans">
+
+                        <tr>
+                            <td colspan="6">
+                                Loading scan activity...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            <span id="status">
+                Connecting to ScamShield backend...
+            </span>
+
+            <button
+                class="refresh-btn"
+                onclick="loadDashboard()">
+                ↻ Refresh
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =====================================================
+           SCAMSHIELD CYBER NETWORK ANIMATION
+           ===================================================== */
+
+        const cyberCanvas = document.getElementById("cyberNetwork");
+        const cyberCtx = cyberCanvas.getContext("2d");
+
+        let cyberNodes = [];
+        let cyberWidth = 0;
+        let cyberHeight = 0;
+
+        function resizeCyberNetwork() {
+            cyberWidth = window.innerWidth;
+            cyberHeight = window.innerHeight;
+
+            const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+
+            cyberCanvas.width = cyberWidth * pixelRatio;
+            cyberCanvas.height = cyberHeight * pixelRatio;
+            cyberCanvas.style.width = cyberWidth + "px";
+            cyberCanvas.style.height = cyberHeight + "px";
+
+            cyberCtx.setTransform(
+                pixelRatio, 0, 0, pixelRatio, 0, 0
+            );
+        }
+
+        function createCyberNodes() {
+            cyberNodes = [];
+
+            const nodeCount = Math.min(
+                55,
+                Math.max(
+                    30,
+                    Math.floor(
+                        (window.innerWidth * window.innerHeight) / 22000
+                    )
+                )
+            );
+
+            for (let i = 0; i < nodeCount; i++) {
+                cyberNodes.push({
+                    x: Math.random() * cyberWidth,
+                    y: Math.random() * cyberHeight,
+                    vx: (Math.random() - 0.5) * 0.35,
+                    vy: (Math.random() - 0.5) * 0.35,
+                    radius: Math.random() * 2.2 + 1.2
+                });
+            }
+        }
+
+        function drawCyberNetwork() {
+            cyberCtx.clearRect(0, 0, cyberWidth, cyberHeight);
+
+            cyberNodes.forEach(node => {
+                node.x += node.vx;
+                node.y += node.vy;
+
+                if (node.x < 0 || node.x > cyberWidth) {
+                    node.vx *= -1;
+                }
+
+                if (node.y < 0 || node.y > cyberHeight) {
+                    node.vy *= -1;
+                }
+            });
+
+            for (let i = 0; i < cyberNodes.length; i++) {
+                for (let j = i + 1; j < cyberNodes.length; j++) {
+                    const nodeA = cyberNodes[i];
+                    const nodeB = cyberNodes[j];
+
+                    const dx = nodeA.x - nodeB.x;
+                    const dy = nodeA.y - nodeB.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 155) {
+                        const opacity =
+                            (1 - distance / 155) * 0.32;
+
+                        cyberCtx.beginPath();
+                        cyberCtx.moveTo(nodeA.x, nodeA.y);
+                        cyberCtx.lineTo(nodeB.x, nodeB.y);
+
+                        cyberCtx.strokeStyle =
+                            `rgba(30, 144, 255, ${opacity})`;
+
+                        cyberCtx.lineWidth = 1;
+                        cyberCtx.stroke();
+                    }
+                }
+            }
+
+            cyberNodes.forEach(node => {
+                cyberCtx.beginPath();
+
+                cyberCtx.arc(
+                    node.x,
+                    node.y,
+                    node.radius,
+                    0,
+                    Math.PI * 2
+                );
+
+                cyberCtx.fillStyle =
+                    "rgba(80, 180, 255, 0.9)";
+
+                cyberCtx.shadowBlur = 12;
+                cyberCtx.shadowColor =
+                    "rgba(30, 144, 255, 0.8)";
+
+                cyberCtx.fill();
+                cyberCtx.shadowBlur = 0;
+            });
+
+            requestAnimationFrame(drawCyberNetwork);
+        }
+
+        window.addEventListener("resize", () => {
+            resizeCyberNetwork();
+            createCyberNodes();
+        });
+
+        resizeCyberNetwork();
+        createCyberNodes();
+        drawCyberNetwork();
+
+
+        async function loadDashboard() {
+
+            const status =
+                document.getElementById("status");
+
+            try {
+
+                /* ==========================
+                   DASHBOARD STATISTICS
+                   ========================== */
+
+                const statsResponse =
+                    await fetch(
+                        "http://localhost:8080/api/dashboard-stats"
+                    );
+
+                if (!statsResponse.ok) {
+                    throw new Error(
+                        "Dashboard statistics unavailable"
+                    );
+                }
+
+                const data =
+                    await statsResponse.json();
+
+
+                /* TOP CARDS */
+
+                document.getElementById(
+                    "totalScans"
+                ).textContent =
+                    data.totalScans;
+
+                document.getElementById(
+                    "criticalScans"
+                ).textContent =
+                    data.criticalScans;
+
+                document.getElementById(
+                    "highScans"
+                ).textContent =
+                    data.highScans;
+
+                document.getElementById(
+                    "mediumScans"
+                ).textContent =
+                    data.mediumScans;
+
+
+                /* RISK COUNTS */
+
+                document.getElementById(
+                    "criticalRiskCount"
+                ).textContent =
+                    data.criticalScans;
+
+                document.getElementById(
+                    "highRiskCount"
+                ).textContent =
+                    data.highScans;
+
+                document.getElementById(
+                    "mediumRiskCount"
+                ).textContent =
+                    data.mediumScans;
+
+                document.getElementById(
+                    "lowRiskCount"
+                ).textContent =
+                    data.lowScans;
+
+
+                /* RISK BARS */
+
+                const total =
+                    data.totalScans || 1;
+
+                document.getElementById(
+                    "criticalBar"
+                ).style.width =
+                    ((data.criticalScans / total) * 100) + "%";
+
+                document.getElementById(
+                    "highBar"
+                ).style.width =
+                    ((data.highScans / total) * 100) + "%";
+
+                document.getElementById(
+                    "mediumBar"
+                ).style.width =
+                    ((data.mediumScans / total) * 100) + "%";
+
+                document.getElementById(
+                    "lowBar"
+                ).style.width =
+                    ((data.lowScans / total) * 100) + "%";
+
+
+                /* SCAN SOURCES */
+
+                document.getElementById(
+                    "messageScans"
+                ).textContent =
+                    data.messageScans;
+
+                document.getElementById(
+                    "urlScans"
+                ).textContent =
+                    data.urlScans;
+
+                document.getElementById(
+                    "qrScans"
+                ).textContent =
+                    data.qrScans;
+
+                document.getElementById(
+                    "screenshotScans"
+                ).textContent =
+                    data.screenshotScans;
+
+
+                /* ==========================
+                   RECENT SCANS
+                   ========================== */
+
+                const historyResponse =
+                    await fetch(
+                        "http://localhost:8080/api/history"
+                    );
+
+                if (!historyResponse.ok) {
+                    throw new Error(
+                        "Scan history unavailable"
+                    );
+                }
+
+                const history =
+                    await historyResponse.json();
+
+
+                const recentScans =
+                    document.getElementById(
+                        "recentScans"
+                    );
+
+
+                recentScans.innerHTML = "";
+
+
+                /* Show ALL scans, newest first */
+
+                history
+                    .slice()
+                    .reverse()
+                    .forEach(scan => {
+
+                        const row =
+                            document.createElement("tr");
+
+
+                        let badgeClass =
+                            "badge-low";
+
+                        if (
+                            scan.riskLevel ===
+                            "CRITICAL"
+                        ) {
+
+                            badgeClass =
+                                "badge-critical";
+
+                        } else if (
+                            scan.riskLevel ===
+                            "HIGH"
+                        ) {
+
+                            badgeClass =
+                                "badge-high";
+
+                        } else if (
+                            scan.riskLevel ===
+                            "MEDIUM"
+                        ) {
+
+                            badgeClass =
+                                "badge-medium";
+                        }
+
+
+                        let time =
+                            scan.scannedAt
+                                ? new Date(
+                                    scan.scannedAt
+                                ).toLocaleString()
+                                : "-";
+
+
+                        row.innerHTML = `
+
+                            <td>${scan.id}</td>
+
+                            <td>${scan.scanType}</td>
+
+                            <td>
+                                <span class="risk-badge ${badgeClass}">
+                                    ${scan.riskLevel}
+                                </span>
+                            </td>
+
+                            <td>
+                                ${scan.riskScore}
+                            </td>
+
+                            <td>
+                                ${scan.scamType || "-"}
+                            </td>
+
+                            <td>
+                                ${time}
+                            </td>
+
+                        `;
+
+
+                        recentScans.appendChild(row);
+
+                    });
+
+
+                status.textContent =
+                    "● Live data connected";
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                status.textContent =
+                    "⚠ Unable to connect to backend.";
+
+            }
+
+        }
+
+
+        /* Load dashboard */
+
+        loadDashboard();
+
+
+        /* Automatically refresh every 5 seconds */
+
+        setInterval(loadDashboard, 5000);
+
+
+    </script>
+
+</body>
+<script>
+
+(function () {
+
+    const quoteElement =
+        document.getElementById("dashboardQuote");
+
+    if (!quoteElement) {
+        return;
+    }
+
+    const quotes = [
+        "Every scan tells a story.",
+        "Detect. Understand. Protect.",
+        "Stay aware. Stay protected.",
+        "Security starts with awareness.",
+        "Monitor. Analyze. Respond."
+    ];
+
+    let currentQuote = 0;
+
+    setInterval(function () {
+
+        quoteElement.classList.add("fade");
+
+        setTimeout(function () {
+
+            currentQuote =
+                (currentQuote + 1) % quotes.length;
+
+            quoteElement.textContent =
+                quotes[currentQuote];
+
+            quoteElement.classList.remove("fade");
+
+        }, 800);
+
+    }, 4500);
+
+})();
+
+</script>
+
+</html>

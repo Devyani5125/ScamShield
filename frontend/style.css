@@ -1,0 +1,1154 @@
+/* =====================================================
+   SCAMSHIELD - MAIN UI
+   ===================================================== */
+
+
+/* =====================================================
+   PAGE
+   ===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(37, 99, 235, 0.12),
+            transparent 35%
+        ),
+        #080d14;
+
+    color: #e5e7eb;
+
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   MAIN CONTAINER
+   ===================================================== */
+
+.container {
+    width: 92%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 35px 0 50px;
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 0 35px;
+
+    border-bottom: 1px solid #1e293b;
+}
+
+
+.brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.shield-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #111827;
+
+    border: 1px solid #263449;
+
+    border-radius: 14px;
+
+    font-size: 28px;
+
+    box-shadow:
+        0 0 25px rgba(37, 99, 235, 0.12);
+}
+
+
+.header h1 {
+    margin: 0;
+
+    font-size: 34px;
+
+    letter-spacing: -1px;
+
+    color: #f8fafc;
+}
+
+
+.header .subtitle {
+    margin: 5px 0 0;
+
+    font-size: 14px;
+
+    color: #94a3b8;
+}
+
+
+.system-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px 14px;
+
+    border-radius: 20px;
+
+    background: #0d1714;
+
+    border: 1px solid #1d4035;
+
+    color: #6ee7b7;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.8px;
+}
+
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 10px rgba(34, 197, 94, 0.8);
+}
+
+
+/* =====================================================
+   INTRODUCTION
+   ===================================================== */
+
+.intro-section {
+    text-align: center;
+
+    padding: 45px 20px 35px;
+}
+
+
+.intro-section h2 {
+    margin: 0 0 12px;
+
+    font-size: 30px;
+
+    color: #f8fafc;
+}
+
+
+.intro-section p {
+    max-width: 700px;
+
+    margin: auto;
+
+    line-height: 1.7;
+
+    color: #94a3b8;
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   SCANNER GRID
+   ===================================================== */
+
+.scanner-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 22px;
+}
+
+
+/* =====================================================
+   MAIN CARD
+   ===================================================== */
+
+.card {
+    background:
+        linear-gradient(
+            145deg,
+            #101722,
+            #0c121b
+        );
+
+    border: 1px solid #1e293b;
+
+    border-radius: 18px;
+
+    padding: 28px;
+
+    text-align: left;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.card:hover {
+    transform: translateY(-3px);
+
+    border-color: #334155;
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =====================================================
+   CARD HEADER
+   ===================================================== */
+
+.card-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 15px;
+}
+
+
+.card-icon {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #111c2d;
+
+    border: 1px solid #263854;
+
+    border-radius: 12px;
+
+    font-size: 22px;
+}
+
+
+.card h2 {
+    margin: 0;
+
+    font-size: 20px;
+
+    color: #f8fafc;
+}
+
+
+.card-label {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.2px;
+
+    color: #64748b;
+}
+
+
+.card-description {
+    min-height: 48px;
+
+    margin: 0 0 18px;
+
+    line-height: 1.6;
+
+    font-size: 14px;
+
+    color: #94a3b8;
+}
+
+
+/* =====================================================
+   TEXTAREA
+   ===================================================== */
+
+textarea {
+    width: 100%;
+
+    min-height: 155px;
+
+    padding: 15px;
+
+    border: 1px solid #334155;
+
+    border-radius: 11px;
+
+    background: #080d14;
+
+    color: #e2e8f0;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    resize: vertical;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+textarea::placeholder,
+input::placeholder {
+    color: #475569;
+}
+
+
+textarea:focus,
+#urlInput:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* =====================================================
+   URL INPUT
+   ===================================================== */
+
+.text-input,
+#urlInput {
+    width: 100%;
+
+    height: 52px;
+
+    padding: 0 15px;
+
+    border: 1px solid #334155;
+
+    border-radius: 11px;
+
+    background: #080d14;
+
+    color: #e2e8f0;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* =====================================================
+   UPLOAD AREA
+   ===================================================== */
+
+.upload-area {
+    position: relative;
+
+    min-height: 155px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 25px;
+
+    border: 1px dashed #334155;
+
+    border-radius: 13px;
+
+    background: #080d14;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.upload-area:hover {
+    border-color: #3b82f6;
+
+    background: #0b1220;
+}
+
+
+.upload-icon {
+    font-size: 30px;
+
+    margin-bottom: 4px;
+}
+
+
+.upload-area span {
+    color: #cbd5e1;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+.upload-area small {
+    color: #64748b;
+
+    font-size: 11px;
+}
+
+
+/* Make file input usable while keeping the area attractive */
+
+.upload-area input[type="file"] {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   ANALYZE BUTTON
+   ===================================================== */
+
+button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    width: 100%;
+
+    margin: 18px 0 0;
+
+    padding: 13px 20px;
+
+    border: 1px solid #2563eb;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+button:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #3b82f6,
+            #2563eb
+        );
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+
+button:active {
+    transform: translateY(0);
+}
+
+
+/* =====================================================
+   ANALYSIS RESULT
+   ===================================================== */
+
+.result-card {
+    display: none;
+
+    margin-top: 22px;
+
+    padding: 22px;
+
+    background: #080d14;
+
+    border: 1px solid #263449;
+
+    border-radius: 13px;
+
+    color: #cbd5e1;
+
+    line-height: 1.6;
+
+    overflow-wrap: anywhere;
+}
+
+
+.result-card h2 {
+    margin-top: 0;
+
+    margin-bottom: 18px;
+
+    text-align: left;
+
+    font-size: 18px;
+
+    color: #f8fafc;
+}
+
+
+.result-card h3 {
+    margin-top: 20px;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    color: #cbd5e1;
+}
+
+
+.result-card p {
+    margin: 7px 0;
+
+    text-align: left;
+
+    color: #94a3b8;
+
+    font-size: 13px;
+}
+
+
+.result-card ul {
+    padding-left: 20px;
+
+    margin-bottom: 15px;
+}
+
+
+.result-card li {
+    margin: 7px 0;
+
+    color: #cbd5e1;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   RISK SCORE
+   ===================================================== */
+
+.risk-score {
+    text-align: center;
+
+    margin: 20px 0 25px;
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    background: #0d1420;
+
+    border: 1px solid #1e293b;
+}
+
+
+.risk-score h3 {
+    margin-top: 0;
+
+    color: #94a3b8;
+}
+
+
+.score {
+    margin: 8px;
+
+    font-size: 40px;
+
+    font-weight: bold;
+
+    color: #f8fafc;
+}
+
+
+.risk-bar {
+    width: 100%;
+
+    height: 10px;
+
+    margin-top: 12px;
+
+    background: #1e293b;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+.risk-progress {
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #22c55e,
+            #f59e0b,
+            #ef4444
+        );
+
+    border-radius: 20px;
+
+    transition:
+        width 0.6s ease;
+}
+
+
+/* =====================================================
+   SOCIAL ENGINEERING TACTICS
+   ===================================================== */
+
+.tactics {
+    margin-top: 12px;
+}
+
+
+.tactic-box {
+    margin: 12px 0;
+
+    padding: 14px 16px;
+
+    background: #111827;
+
+    border: 1px solid #263449;
+
+    border-left: 4px solid #f97316;
+
+    border-radius: 9px;
+}
+
+
+.tactic-box strong {
+    display: block;
+
+    font-size: 14px;
+
+    color: #fbbf24;
+}
+
+
+.tactic-box p {
+    margin: 7px 0 0;
+
+    color: #94a3b8;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   HOW IT WORKS
+   ===================================================== */
+
+.how-it-works {
+    margin-top: 55px;
+
+    padding: 35px 0 20px;
+
+    border-top: 1px solid #1e293b;
+}
+
+
+.section-heading {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+.section-tag {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background: #111c2d;
+
+    border: 1px solid #263854;
+
+    color: #60a5fa;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.2px;
+}
+
+
+.section-heading h2 {
+    margin: 0 0 8px;
+
+    color: #f8fafc;
+
+    font-size: 25px;
+}
+
+
+.section-heading p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   PIPELINE
+   ===================================================== */
+
+.pipeline {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+}
+
+
+.pipeline-step {
+    flex: 1;
+
+    min-height: 145px;
+
+    padding: 20px;
+
+    background: #0e1621;
+
+    border: 1px solid #1e293b;
+
+    border-radius: 13px;
+
+    text-align: center;
+}
+
+
+.pipeline-number {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    margin-bottom: 10px;
+
+    border-radius: 50%;
+
+    background: #111c2d;
+
+    border: 1px solid #29436b;
+
+    color: #60a5fa;
+
+    font-size: 11px;
+
+    font-weight: bold;
+}
+
+
+.pipeline-step h3 {
+    margin: 0 0 7px;
+
+    color: #e2e8f0;
+
+    font-size: 15px;
+}
+
+
+.pipeline-step p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+.pipeline-line {
+    width: 25px;
+
+    height: 1px;
+
+    background: #334155;
+
+    flex-shrink: 0;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+footer {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 50px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #1e293b;
+
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+
+footer strong {
+    color: #94a3b8;
+}
+
+
+footer span {
+    color: #475569;
+}
+
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+@media (max-width: 850px) {
+
+    .scanner-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .pipeline {
+        flex-direction: column;
+    }
+
+
+    .pipeline-step {
+        width: 100%;
+    }
+
+
+    .pipeline-line {
+        width: 1px;
+
+        height: 20px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 94%;
+
+        padding-top: 20px;
+    }
+
+
+    .header {
+        align-items: flex-start;
+
+        gap: 20px;
+
+        flex-direction: column;
+    }
+
+
+    .system-status {
+        align-self: flex-start;
+    }
+
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+
+    .intro-section {
+        padding: 35px 10px 25px;
+    }
+
+
+    .intro-section h2 {
+        font-size: 24px;
+    }
+
+
+    .card {
+        padding: 20px;
+    }
+
+
+    footer {
+        flex-direction: column;
+
+        gap: 8px;
+
+        text-align: center;
+    }
+
+}
+/* =====================================================
+   SCAMSHIELD - CYBERSECURITY NETWORK BACKGROUND
+   ===================================================== */
+
+/* Main black background */
+body {
+    position: relative;
+    overflow-x: hidden;
+    background: #02060b;
+}
+
+/* Animated network canvas */
+#cyberNetwork {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 0;
+    pointer-events: none;
+
+    background: #02060b;
+}
+
+/* Keep all website content above the animation */
+.container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Make cards slightly transparent so the cyber
+   background can still be seen around them */
+.card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(10, 18, 29, 0.94),
+            rgba(5, 12, 21, 0.94)
+        );
+
+    backdrop-filter: blur(5px);
+
+    border: 1px solid rgba(37, 99, 235, 0.45);
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.45),
+        0 0 25px rgba(37, 99, 235, 0.05);
+}
+
+/* Card hover glow */
+.card:hover {
+    border-color: rgba(37, 99, 235, 0.75);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.55),
+        0 0 30px rgba(37, 99, 235, 0.12);
+}
+
+/* Pipeline cards */
+.pipeline-step {
+    background:
+        rgba(8, 16, 27, 0.92);
+
+    backdrop-filter: blur(5px);
+}
+
+/* Header remains readable */
+.header {
+    position: relative;
+    z-index: 3;
+}
+
+/* Intro remains readable */
+.intro-section {
+    position: relative;
+    z-index: 3;
+}
+
+/* How it works */
+.how-it-works {
+    position: relative;
+    z-index: 3;
+}
+
+/* Footer */
+footer {
+    position: relative;
+    z-index: 3;
+}
+/* =====================================================
+   CYBER QUOTE
+   ===================================================== */
+
+.cyber-quote {
+    margin-top: 18px;
+
+    color: #38bdf8;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    letter-spacing: 0.8px;
+
+    text-align: center;
+
+    text-shadow:
+        0 0 10px rgba(56, 189, 248, 0.35);
+
+    opacity: 1;
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.cyber-quote.fade {
+    opacity: 0;
+    transform: translateY(4px);
+}
+/* =====================================================
+   DASHBOARD NAVIGATION BUTTON
+   ===================================================== */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.dashboard-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 10px 18px;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    background: rgba(0, 140, 255, 0.12);
+
+    border: 1px solid rgba(0, 180, 255, 0.55);
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+.dashboard-button:hover {
+    background: rgba(0, 160, 255, 0.22);
+
+    border-color: rgba(0, 200, 255, 0.9);
+
+    box-shadow:
+        0 0 18px rgba(0, 170, 255, 0.25);
+
+    transform: translateY(-1px);
+}
